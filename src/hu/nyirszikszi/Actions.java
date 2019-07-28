@@ -1,10 +1,7 @@
 package hu.nyirszikszi;
 
 import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 
 class Actions {
     static ArrayList<Fuvar> readList(String fileName) {
@@ -104,6 +101,13 @@ class Actions {
 
     static String task8(ArrayList<Fuvar> list, String fileName) {
         ArrayList<String> results = new ArrayList<>();
+
+        list.sort(new Comparator<Fuvar>() {
+            @Override
+            public int compare(Fuvar o1, Fuvar o2) {
+                return o1.getIndulas().compareTo(o2.getIndulas());
+            }
+        });
 
         for (Fuvar fuvar : list) {
             if (fuvar.getIdotartam() > 0.0 && fuvar.getViteldij() > 0.0 && fuvar.getTavolsag() == 0.0) {
