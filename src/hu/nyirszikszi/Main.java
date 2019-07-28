@@ -16,5 +16,7 @@ public class Main {
         System.out.println("6. feladat: " + Actions.task6(list));
 
         System.out.println("7. feladat: " + Actions.task7(list));
+
+        System.out.println("8. feladat: " + Actions.task8(list, "hibak.txt"));
     }
 }

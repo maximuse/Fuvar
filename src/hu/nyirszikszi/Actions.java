@@ -68,6 +68,7 @@ class Actions {
             counter = 0;
         }
 
+
         data.forEach((key, value) -> System.out.println("\t" + key + ": " + value + " fuvar"));
     }
 
@@ -99,5 +100,33 @@ class Actions {
                 "\tViteldíj: $" + String.format("%.2f", list.get(index).getViteldij());
 
         return data;
+    }
+
+    static String task8(ArrayList<Fuvar> list, String fileName) {
+        ArrayList<String> results = new ArrayList<>();
+
+        for (Fuvar fuvar : list) {
+            if (fuvar.getIdotartam() > 0.0 && fuvar.getViteldij() > 0.0 && fuvar.getTavolsag() == 0.0) {
+                results.add(fuvar.getTaxiId() + ";" + fuvar.getIndulas() + ";" + fuvar.getIdotartam() + ";" +
+                            fuvar.getTavolsag() + ";" + fuvar.getViteldij() + ";" + fuvar.getBorravalo() + ";" +
+                            fuvar.getFizetesModja());
+            }
+        }
+
+        try {
+            RandomAccessFile raf = new RandomAccessFile(fileName, "rw");
+
+            raf.writeBytes("taxi_id;indulas;idotartam;tavolsag;viteldij;borravalo;fizetes_modja\r\n");
+            for (String result : results) {
+                raf.writeBytes(result + "\r\n");
+            }
+
+            raf.close();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return fileName;
     }
 }
