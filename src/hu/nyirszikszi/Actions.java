@@ -1,6 +1,7 @@
 package hu.nyirszikszi;
 
 import java.io.RandomAccessFile;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 class Actions {
@@ -15,7 +16,7 @@ class Actions {
             String utf;
 
             while (row != null) {
-                utf = new String(row.getBytes("ISO-8859-1"), "UTF-8");
+                utf = new String(row.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
                 slice = utf.split(";");
 
                 list.add(new Fuvar(Integer.parseInt(slice[0]), slice[1], Integer.parseInt(slice[2]), Double.parseDouble(slice[3]), Double.parseDouble(slice[4]), Double.parseDouble(slice[5]), slice[6]));
